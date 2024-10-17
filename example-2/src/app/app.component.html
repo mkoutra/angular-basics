@@ -1,0 +1,11 @@
+<div class="container">
+  <h3>Welcome to Angular</h3>
+  <p>Hello <strong>{{title}}</strong></p>
+
+  <div class="d-flex gap-5 text-nowrap">
+    <!-- Bring the html page that corresponds to the component app-person-table -->
+    <app-person-table [person]="person0"></app-person-table>
+    <app-person-table></app-person-table>
+    <app-person-table [person]="person1"></app-person-table>
+  </div>
+</div>
