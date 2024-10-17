@@ -1,0 +1,22 @@
+<div class="container">
+  <h3>Welcome Coding Factory</h3>
+  
+  <app-event-bind-example></app-event-bind-example>
+
+  <h4>Component Input to Person Table</h4>
+  <div class="d-flex gap-5">
+    <app-person-table [person] = "person0"></app-person-table>
+    <app-person-table></app-person-table>
+    <app-person-table [person] = "person1"></app-person-table>
+  </div>
+
+  <!-- show elements of an array -->
+  <div>
+    <h4>{{"@for"}} Example</h4>
+    <div class="d-flex gap-2 flex-wrap">
+        @for (user of users; track user) {
+          <app-person-table [person] = "user"></app-person-table>
+        }
+    </div>
+  </div>
+</div>
