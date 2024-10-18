@@ -4,6 +4,7 @@ import { ComponentInputExampleComponent } from './components/component-input-exa
 import { ForDirectiveExampleComponent } from './components/for-directive-example/for-directive-example.component';
 import { EventBindExampleComponent } from './components/event-bind-example/event-bind-example.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { SimpleDatatableComponent } from './components/simple-datatable/simple-datatable.component';
 
 export const routes: Routes = [
     // when /component-input-example is encountered open the component 'ComponentInputExampleComponent'
@@ -11,5 +12,6 @@ export const routes: Routes = [
     { path:'for-directive-example', component: ForDirectiveExampleComponent },
     { path:'event-bind-example', component: EventBindExampleComponent },
     { path:'welcome', component: WelcomeComponent },
-    { path:'', redirectTo: '/welcome', pathMatch: 'full' }   // localhost:4200 then redirect to /welcome, path should match 100%
+    { path:'', redirectTo: '/welcome', pathMatch: 'full' },   // localhost:4200 then redirect to /welcome, path should match 100%
+    { path: 'simple-data-table', component: SimpleDatatableComponent}
 ];

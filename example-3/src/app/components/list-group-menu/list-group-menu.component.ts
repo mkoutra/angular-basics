@@ -13,8 +13,9 @@ import { MenuEntry } from '../../shared/interfaces/menu-entry';
 })
 export class ListGroupMenuComponent {
   menu: MenuEntry[] = [
-    {text: "Component Input Example", routerLink: "component-input-example"},
+    {text: "Component Input Example", routerLink: "component-input-example"}, // routerLink value is the same as the path declared in app.routes.ts
     {text: "@for Directive Example", routerLink: "for-directive-example"},
-    {text: "Event Bind Example", routerLink: "event-bind-example"}
+    {text: "Event Bind Example", routerLink: "event-bind-example"},
+    {text: "Simple Data Table", routerLink: "simple-data-table"}
   ]
 }
