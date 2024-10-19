@@ -16,6 +16,7 @@ export class ListGroupMenuComponent {
     {text: "Component Input Example", routerLink: "component-input-example"}, // routerLink value is the same as the path declared in app.routes.ts
     {text: "@for Directive Example", routerLink: "for-directive-example"},
     {text: "Event Bind Example", routerLink: "event-bind-example"},
-    {text: "Simple Data Table", routerLink: "simple-data-table"}
+    {text: "Simple Data Table", routerLink: "simple-data-table"},
+    {text: "Component Output Example", routerLink: "component-output-example"}
   ]
 }

@@ -1,17 +1,17 @@
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Age</th>
-            <th>Email</th>
-            <th>Address</th>
+            <th role="button" (click)="sortData('givenName')">First Name <span [innerHTML]="sortSign('givenName')"></span></th>
+            <th role="button" (click)="sortData('surName')">Last Name <span [innerHTML]="sortSign('surName')"></span></th>
+            <th role="button" (click)="sortData('age')">Age <span [innerHTML]="sortSign('age')"></span></th>
+            <th role="button" (click)="sortData('email')">Email <span [innerHTML]="sortSign('email')"></span></th>
+            <th role="button" (click)="sortData('address')">Address <span [innerHTML]="sortSign('address')"></span></th>
         </tr>
     </thead>
 
     <tbody>
         @for (row of manyPerson; track row) {
-            <tr class="align-middle">
+            <tr class="align-middle" (dblclick)="onPersonClick(row)">
                 <td>{{row.givenName}}</td>
                 <td>{{row.surName}}</td>
                 <td>{{row.age}}</td>
