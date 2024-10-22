@@ -1,26 +1,31 @@
 <div class="d-flex flex-column">
     <h5>New Person Form</h5>
-    <form [formGroup]="userForm">
-        <div>
-            <label>First Name</label>
-            <input type="text" formControlName="givenName">
-        </div>
-        <div>
-            <label>Last Name</label>
-            <input type="text" formControlName="surName">
-        </div>
-        <div>
-            <label>Age</label>
-            <input type="text" formControlName="age">
-        </div>
-        <div>
-            <label>Email</label>
-            <input type="text" formControlName="email">
-        </div>
-        <div>
-            <label>Address</label>
-            <input type="text" formControlName="address">
-        </div>
+    <form [formGroup]="userForm" class="d-flex flex-column">
+        <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input matInput type="text" formControlName="givenName">
+            <mat-error>First Name is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input matInput type="text" formControlName="surName">
+            <mat-error>Last Name is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Age</mat-label>
+            <input matInput type="text" formControlName="age">
+            <mat-error>Age is missing or is invalid.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput type="text" formControlName="email">
+            <mat-error>Email is missing or is invalid.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Address</mat-label>
+            <input matInput type="text" formControlName="address">
+            <mat-error>Address is required.</mat-error>
+        </mat-form-field>
     </form>
-    <button [disabled]="userForm.invalid" (click)="onSubmit(userForm.value)">Submit</button>
+    <button mat-flat-button [disabled]="userForm.invalid" (click)="onSubmit(userForm.value)">Submit</button>
 </div>
