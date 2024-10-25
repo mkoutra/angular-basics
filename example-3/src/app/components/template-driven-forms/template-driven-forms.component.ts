@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { TemplateFormComponent } from './template-form/template-form.component';
-import { EPerson } from '../../shared/interfaces/person';
+import { EPerson, ManyPerson } from '../../shared/interfaces/person';
 import { SimpleDatatableComponent } from '../simple-datatable/simple-datatable.component';
 import { PersonTableComponent } from '../person-table/person-table.component';
 
@@ -22,5 +22,6 @@ export class TemplateDrivenFormsComponent {
     this.persons.push(person);
     console.log("CurrentPerson>>", this.currentPerson)
     console.log("Persons>>>>", this.persons)
+    ManyPerson.push(person)
   }
 }

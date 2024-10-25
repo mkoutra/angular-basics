@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -7,6 +7,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { EPerson } from '../../../shared/interfaces/person';
 
 @Component({
   selector: 'app-reactive-form-structure',
@@ -23,6 +24,8 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './reactive-form-structure.component.css'
 })
 export class ReactiveFormStructureComponent {
+    @Output() person = new EventEmitter<EPerson>()  // We trigger an event which is assigned to `person` variable
+
     // The whole group is accessed to form variable
     userForm = new FormGroup({
         givenName: new FormControl('', Validators.required), // Initial value is empty and the value is mandatory
@@ -37,8 +40,15 @@ export class ReactiveFormStructureComponent {
         address: new FormControl('', Validators.required)
     })
 
+    // Runs before all
+    ngOnInt() {
+        this.userForm.get('address')?.setValue('road2')
+    }
+
     onSubmit(value: any) {
         console.log(value);
+        console.log(this.userForm.get('address')?.value);
+        this.person.emit(value as EPerson);
         this.userForm.reset();  // Reset form
     }
 }

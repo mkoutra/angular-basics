@@ -4,7 +4,7 @@
     <app-template-form (person)="onPerson($event)"></app-template-form>
     <div class="d-flex flex-column gap-4">
         <!-- [] is used for input -->
-        <app-person-table></app-person-table>
+        <app-person-table [eperson]="currentPerson"></app-person-table>
         <app-simple-datatable></app-simple-datatable>
     </div>
 </div>
