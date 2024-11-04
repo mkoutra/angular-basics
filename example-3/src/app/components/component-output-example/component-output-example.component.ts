@@ -4,6 +4,8 @@ import { SimpleDatatableComponent } from '../simple-datatable/simple-datatable.c
 import { EPerson } from '../../shared/interfaces/person';
 import { Person } from '../../shared/interfaces/person';
 
+// Dialog is a Angular Material thing
+
 import {
   Dialog,
   DialogRef,

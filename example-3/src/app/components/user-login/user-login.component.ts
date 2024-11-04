@@ -5,6 +5,9 @@ import { Credentials } from '../../shared/interfaces/mongo-backend';
 import { UserService } from '../../shared/services/user.service';
 import { Router } from '@angular/router';
 
+import {jwtDecode} from 'jwt-decode';   // to gain access to jwt token
+import { LoggedInUser } from '../../shared/interfaces/mongo-backend';
+
 @Component({
   selector: 'app-user-login',
   standalone: true,
@@ -29,6 +32,13 @@ export class UserLoginComponent {
             next: (response) => {
                 const access_token = response.access_token
                 console.log(access_token)
+
+                // Save access token to browser storage
+                localStorage.setItem("access_token", access_token);
+
+                const decodedTokenSubject = jwtDecode(access_token).sub as unknown as LoggedInUser;
+                console.log(decodedTokenSubject);
+
                 this.router.navigate(['restricted-content-example'])
             },
             error: (error) => {
