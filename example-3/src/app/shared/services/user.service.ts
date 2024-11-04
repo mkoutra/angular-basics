@@ -5,6 +5,7 @@ import { environment } from '../../../environments/environment.development';
 import { Credentials, LoggedInUser, User } from '../interfaces/mongo-backend';
 
 import { Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
 
 const API_URL=`${environment.apiURL}/user`  // http://localhost:5000/user
 
@@ -19,6 +20,16 @@ export class UserService {
   router = inject(Router);
 
   constructor() {
+    const access_token = localStorage.getItem("access_token")
+    if (access_token) {
+      const decodedTokenSubject = jwtDecode(access_token).sub as unknown as LoggedInUser
+
+      this.user.set({
+        fullname: decodedTokenSubject.fullname,
+        email: decodedTokenSubject.email
+      })
+    }
+
     effect(()=> {
       if (this.user()) {
         // If there are changes in user variable
