@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-
+import { Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+
+import { UserService } from '../../shared/services/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,5 +12,10 @@ import { RouterLink } from '@angular/router';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
+  userService = inject(UserService);
+  user = this.userService.user;
 
+  logout() {
+    this.userService.logoutUser()
+  }
 }

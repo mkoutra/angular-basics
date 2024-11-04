@@ -38,6 +38,11 @@ export class UserLoginComponent {
 
                 const decodedTokenSubject = jwtDecode(access_token).sub as unknown as LoggedInUser;
                 console.log(decodedTokenSubject);
+                
+                this.userService.user.set({
+                    fullname: decodedTokenSubject.fullname, // read from token
+                    email: decodedTokenSubject.email        // read from token
+                });  // Assign value to a signal variable
 
                 this.router.navigate(['restricted-content-example'])
             },

@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 import { Credentials, LoggedInUser, User } from '../interfaces/mongo-backend';
 
+import { Router } from '@angular/router';
+
 const API_URL=`${environment.apiURL}/user`  // http://localhost:5000/user
 
 @Injectable({
@@ -14,6 +16,8 @@ export class UserService {
 
   user = signal<LoggedInUser | null>(null)  // Signal Variable with initial value null
   
+  router = inject(Router);
+
   constructor() {
     effect(()=> {
       if (this.user()) {
@@ -36,5 +40,11 @@ export class UserService {
 
   loginUser(credentials: Credentials) {
     return this.http.post<{access_token: string}>(`${API_URL}/login`, credentials)
+  }
+
+  logoutUser() {
+    this.user.set(null);
+    localStorage.removeItem('access_token');
+    this.router.navigate(['login'])
   }
 }
