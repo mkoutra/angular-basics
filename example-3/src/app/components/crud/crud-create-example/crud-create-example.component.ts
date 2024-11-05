@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { CrudNavbarComponent } from '../crud-navbar/crud-navbar.component';
 
@@ -30,6 +30,8 @@ import { Customer } from '../../../shared/interfaces/customer';
 })
 export class CrudCreateExampleComponent {
 
+  customerService = inject(CustomerService);
+
   form = new FormGroup({
     givenName: new FormControl('', Validators.required),
     
@@ -49,8 +51,41 @@ export class CrudCreateExampleComponent {
     address: new FormGroup({
       street: new FormControl('', Validators.required),
       city: new FormControl('', Validators.required),
-      zipcode: new FormControl('', Validators.required)
+      zipCode: new FormControl('', Validators.required),
+      number: new FormControl('', Validators.required)
     })
   })
 
+  // a copy of the phoneNumbers of the form
+  phoneNumbers = this.form.get('phoneNumbers') as FormArray;  // Type cast to FormArray
+
+  removePhoneNumber(index:number) {
+    this.phoneNumbers.removeAt(index)
+  }
+
+  addPhoneNumber() {
+    this.phoneNumbers.push(
+      new FormGroup({
+        number: new FormControl("", Validators.required),
+        type: new FormControl("", Validators.required)
+      })
+    )
+  }
+
+  onSubmit(value: any) {
+    console.log(value)
+
+    const customer = this.form.value as Customer
+    
+    this.customerService.createCustomer(value).subscribe({
+      next: (response) => {
+        // alert("Customer created")
+        console.log("Customer created: ", response)
+        this.form.reset()
+      },
+      error: (error) => {
+        console.log("There was a problem:", error)
+      }
+    })
+  }
 }
