@@ -56,13 +56,14 @@ export class CrudCreateExampleComponent {
     })
   })
 
-  // a copy of the phoneNumbers of the form
+  // a copy of the phoneNumbers from the form
   phoneNumbers = this.form.get('phoneNumbers') as FormArray;  // Type cast to FormArray
 
   removePhoneNumber(index:number) {
     this.phoneNumbers.removeAt(index)
   }
 
+  // Add phone number to the view
   addPhoneNumber() {
     this.phoneNumbers.push(
       new FormGroup({

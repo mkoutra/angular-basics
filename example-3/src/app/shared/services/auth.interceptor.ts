@@ -2,7 +2,7 @@
 import {HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
-@Injectable() // @Injectable means that it is visible to all our pages.
+@Injectable() // @Injectable means that it will be visible to all our pages.
 
 // export const authInterceptor: HttpInterceptorFn = (req, next) => {
 //   return next(req);

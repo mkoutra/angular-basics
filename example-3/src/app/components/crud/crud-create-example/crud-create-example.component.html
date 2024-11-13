@@ -31,12 +31,15 @@
             <div formArrayName="phoneNumbers">
                 @for(phone of phoneNumbers.controls; let i = $index; track i) {
                     index >> {{i}}
+                    
+                    <!-- [formGroupName]="i" means that the div belongs to position i of the array. -->
                     <div [formGroupName]="i" class="d-flex gap-3 align-items-center">
                         <mat-form-field>
                             <mat-label>Phone:</mat-label>
                             <input matInput type="text" formControlName="number">
                             <mat-error>Phone number must not be empty.</mat-error>
                         </mat-form-field>
+
                         <mat-form-field>
                             <mat-label>Type:</mat-label>
                             <mat-select formControlName="type">
@@ -45,6 +48,7 @@
                                 <mat-option value="home">Home</mat-option>
                             </mat-select>
                         </mat-form-field>
+
                         <div>
                             <!-- i is the index of the array -->
                             <mat-icon role="button" class="cursor-pointer" (click)="removePhoneNumber(i)">delete</mat-icon>
@@ -79,13 +83,9 @@
                 </mat-form-field>
             </div>
         </form>
-        
-        <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="onSubmit(form.value)">
-            Submit
-        </button>
-
-        <button mat-raised-button color="warm" (click)="form.reset()">
-            Reset
-        </button>
+        <div class="d-flex gap-2">
+            <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="onSubmit(form.value)">Submit</button>
+            <button mat-raised-button color="warm" (click)="form.reset()">Reset</button>
+        </div>
     </div>
 </div>

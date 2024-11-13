@@ -3,4 +3,103 @@
     <div class="text-wrap">
         <p>Update Customer.</p>
     </div>
+
+    <!-- ngSubmit requires a type='submit' button -->
+    <form [formGroup]="searchForm" (ngSubmit)="search()">
+        <div class="d-flex gap-2">
+            <input type="text" formControlName="search" placeholder="Enter AFM">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+
+    <form [formGroup]="form" class="d-flex flex-column gap-2 w-50">
+        <mat-form-field>
+            <mat-label>Name:</mat-label>
+            <input matInput type="text" formControlName="givenName">
+            <mat-error>Name must not be empty.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Surname:</mat-label>
+            <input matInput type="text" formControlName="surName">
+            <mat-error>Surname must not be empty.</mat-error>
+        </mat-form-field>
+        
+        <mat-form-field>
+            <mat-label>Email:</mat-label>
+            <input matInput type="text" formControlName="email">
+            <!-- <mat-error>Email must not be empty.</mat-error> -->
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>AFM:</mat-label>
+            <input matInput type="text" formControlName="afm">
+            <mat-error>AFM must not be empty.</mat-error>
+        </mat-form-field>
+
+        <div formArrayName="phoneNumbers">
+            <!-- @for(phone of phoneNumbers.controls; let i = $index; track i) { -->
+
+                <!-- <div [formGroupName]="i" class="d-flex gap-3 align-items-center"> -->
+                <div *ngFor="let phone of phoneNumbers.controls; let i=index"
+                     [formGroupName]="i"
+                     class="d-flex gap-3 align-items-center">
+                    <mat-form-field>
+                        <mat-label>Phone:</mat-label>
+                        <input matInput type="text" formControlName="number">
+                        <mat-error>Phone number must not be empty.</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Type:</mat-label>
+                        <mat-select formControlName="type">
+                            <mat-option value="mobile">Mobile</mat-option>
+                            <mat-option value="work">Work</mat-option>
+                            <mat-option value="home">Home</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <div>
+                        <!-- i is the index of the array -->
+                        <mat-icon *ngIf="i != 0" role="button" class="cursor-pointer" (click)="removePhoneNumber(i)">delete</mat-icon>
+                        <mat-icon role="button" class="cursor-pointer" (click)="addPhoneNumber()">add</mat-icon>                    
+                    </div>
+                </div>
+
+            <!-- } -->
+        </div>
+        <div formGroupName="address" class="d-flex flex-column">
+            <mat-form-field>
+                <mat-label>Address:</mat-label>
+                <input matInput type="text" formControlName="street">
+                <mat-error>Address must not be empty.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>No:</mat-label>
+                <input matInput type="text" formControlName="number">
+                <mat-error> Number must not be empty.</mat-error>
+            </mat-form-field>
+            
+            <mat-form-field>
+                <mat-label>City:</mat-label>
+                <input matInput type="text" formControlName="city">
+                <mat-error>City must not be empty.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Zip-code:</mat-label>
+                <input matInput type="text" formControlName="zipCode">
+                <mat-error>Zip-code must not be empty.</mat-error>
+            </mat-form-field>
+        </div>
+    </form>
+    
+    <div class="d-flex gap-2">
+        <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="onSubmit(form.value)">
+            Submit
+        </button>
+    
+        <button mat-raised-button color="warm" (click)="form.reset()">
+            Reset
+        </button>
+    </div>
 </div>
